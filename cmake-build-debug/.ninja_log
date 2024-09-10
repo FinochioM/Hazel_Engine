@@ -1,0 +1,27 @@
+# ninja log v5
+2	279	7476845347058393	build.ninja	e23ed999c65dd816
+9	2217	7476774184274870	CMakeFiles/HazelEngine.dir/main.cpp.obj	574bb8c1485fb7d9
+1936	2570	7476828155313837	HazelEngine.exe	9d73ba6f14428ca5
+21	1046	7476827757645647	CMakeFiles/HazelEngine.dir/Core/ComponentSystem/Components/BoxCollider.cpp.obj	5ee64d01c1e74830
+18	305	7473959678501079	CMakeFiles/HazelEngine.dir/Renderer.cpp.obj	d77248d18a44fcd4
+21	1090	7476812058975439	CMakeFiles/HazelEngine.dir/Core/ComponentSystem/Components/Renderer.cpp.obj	36c96e942ec10a8d
+23	1156	7476804074556186	CMakeFiles/HazelEngine.dir/Core/ComponentSystem/Entity.cpp.obj	3f6cdd0c3651f783
+43	2123	7476762255370567	CMakeFiles/HazelEngine.dir/Core/Shaders/Classes/Shader.cpp.obj	5cf381c3626157c9
+99	3231	7476762266435564	CMakeFiles/HazelEngine.dir/Core/GUI/Widgets/Widget.cpp.obj	9bca1ce7c003a2c4
+31	2172	7476223698555836	CMakeFiles/HazelEngine.dir/Core/GUI/Renderer/GUIRenderer.cpp.obj	67ef4c33ba971634
+70	308	7476762237188558	CMakeFiles/HazelEngine.dir/Core/Global/Global.cpp.obj	50da69fcb18d0cc6
+8	2034	7476775122996352	CMakeFiles/HazelEngine.dir/Core/GUI/Widgets/Button.cpp.obj	552f238e3da804
+55	1982	7475520582351956	CMakeFiles/HazelEngine.dir/Core/GUI/lib/FontManager.cpp.obj	b2f0113a366c5e7c
+61	3155	7476762265695376	CMakeFiles/HazelEngine.dir/Core/GUI/lib/TextRenderer.cpp.obj	947540178c7fb26d
+65	222	7475430030565335	CMakeFiles/HazelEngine.dir/Core/Global.cpp.obj	62121527dd67c267
+31	4481	7475449533178235	CMakeFiles/HazelEngine.dir/Core/Application.cpp.obj	cf1c76d9b937f24
+8	1936	7476828149013832	CMakeFiles/HazelEngine.dir/Core/Global/Application.cpp.obj	e51f9bc55e02de09
+46	2328	7476223814202803	CMakeFiles/HazelEngine.dir/Core/Managers/ButtonManager.cpp.obj	11cfdd8f8bb4958a
+52	2619	7476762260300922	CMakeFiles/HazelEngine.dir/Core/Managers/FontManager.cpp.obj	58ec48c51c8a2ea5
+66	3415	7476047761418606	CMakeFiles/HazelEngine.dir/Core/GUI/Widgets/ButtonGroup.cpp.obj	ea0c4375f63ecdd4
+89	3417	7476762268322745	CMakeFiles/HazelEngine.dir/Core/GUI/Widgets/Handlers/WidgetManager.cpp.obj	6b5db14fd9c3c546
+42	2231	7476773643336357	CMakeFiles/HazelEngine.dir/Core/Scene/Scene.cpp.obj	37bb94cc0974c0e6
+49	2124	7476773642256358	CMakeFiles/HazelEngine.dir/Core/Scene/SceneManager.cpp.obj	7a6d9ee7ef3aa84a
+30	1062	7476769342099118	CMakeFiles/HazelEngine.dir/Core/Scene/Node.cpp.obj	3ff97d9ae8050c39
+37	562	7476804068626201	CMakeFiles/HazelEngine.dir/Core/ComponentSystem/Component.cpp.obj	2db562aeb0170087
+43	895	7476804071946202	CMakeFiles/HazelEngine.dir/Core/ComponentSystem/Components/Transform.cpp.obj	963027cc8a4bd92d
