@@ -2,6 +2,7 @@
 #define HAZELENGINE_SCENEMANAGER_H
 
 #include "Scene.h"
+#include "Entity.h"
 #include <map>
 #include <string>
 

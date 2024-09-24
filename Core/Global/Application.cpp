@@ -3,10 +3,12 @@
 #include "Scene.h"
 #include "Entity.h"
 #include "Transform.h"
-#include "Renderer.h"
+#include "SpriteRenderer.h"
 #include "BoxCollider.h"
+#include "Animator.h"
 
 float deltaTime = 0.0f;
+bool isItRunning = false;
 
 Application::Application() : textRenderer(nullptr), window(nullptr) {}
 
@@ -16,6 +18,8 @@ Application::~Application() {
 
 bool Application::Init()
 {
+    bool isRunning = isItRunning;
+
     if (!InitSDL() || !InitOpenGL() || !InitTTF()) {
         return false;
     }
@@ -25,25 +29,55 @@ bool Application::Init()
         return false;
     }
 
+    AnimationTransition idleToRun;
+    idleToRun.from = "idle";
+    idleToRun.to = "run";
+    idleToRun.transitionDuration = 0.05f;
+    idleToRun.condition = [](){
+        return isItRunning;
+    };
+
+    AnimationTransition runToIdle;
+    runToIdle.from = "run";
+    runToIdle.to = "idle";
+    runToIdle.transitionDuration = 0.05f;
+    runToIdle.condition = [](){
+        return !isItRunning;
+    };
+
     textRenderer = new TextRenderer(&fontManager);
+    AnimationLoader* loader = new AnimationLoader();
+    loader->LoadAnimation("../Core/ComponentSystem/Animations/CsaFiles/player_animation.csa");
 
     Entity* entity = new Entity("Entity");
     Transform* transform = new Transform(entity);
-    Renderer* renderer = new Renderer(entity);
-    BoxCollider* collider = new BoxCollider(entity, glm::vec2(50.0, 50.0));
+    SpriteRenderer* renderer = new SpriteRenderer(entity, "../Core/GUI/assets/animations/player_animation.png", TextureFilter::Point);
+    BoxCollider* collider = new BoxCollider(entity, glm::vec2(100.0, 100.0));
+    Animator* animator = new Animator(entity, renderer, loader);
+
+    animator->PlayAnimation("idle");
+    animator->AddTransition(idleToRun);
+    animator->AddTransition(runToIdle);
+    animator->SetManualControl(true);
 
     transform->position = glm::vec3(200.0);
+    transform->scale = glm::vec3(2.0);
 
+    entity->AddComponent(animator);
     entity->AddComponent(transform);
     entity->AddComponent(renderer);
     entity->AddComponent(collider);
 
     Scene* testScene = new Scene("TestScene");
 
-    Button* buttonNode = new Button(glm::vec2(100.0, 100.0), glm::vec2(200.0,50.0), "Test", textRenderer);
+    Button* buttonNode = new Button(glm::vec2(100.0, 100.0), glm::vec2(200.0,50.0), "Swap", textRenderer);
 
-    buttonNode->RegisterEvent(WidgetEventType::LeftClick, [] (){
-        std::cout << "Boton clickeado en la escena :" << std::endl;
+    buttonNode->RegisterEvent(WidgetEventType::LeftClick, [&isRunning] (){
+        isRunning = false;
+    });
+
+    buttonNode->RegisterEvent(WidgetEventType::RightClick, [&isRunning] (){
+        isRunning = true;
     });
 
 
@@ -132,6 +166,24 @@ void Application::GameLoop() {
             }
 
             sceneManager.GetCurrentScene()->HandleEvents(event);
+
+            auto entity = sceneManager.GetCurrentScene()->GetEntity("Entity");
+            if (entity) {
+                auto animator = static_cast<Animator *>(entity->GetComponent("Animator"));
+                if (animator) {
+                    if (event.type == SDL_KEYDOWN) {
+                        if (event.key.keysym.sym == SDLK_n) {
+                            std::cout << "Next Frame" << std::endl;
+                            animator->SetManualControl(true);
+                            animator->NextFrame();
+                        } else if (event.key.keysym.sym == SDLK_p) {
+                            std::cout << "Previous Frame" << std::endl;
+                            animator->SetManualControl(true);
+                            animator->PreviousFrame();
+                        }
+                    }
+                }
+            }
         }
 
         sceneManager.Update(deltaTime);

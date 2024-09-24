@@ -22,6 +22,7 @@ include_directories(${SDL_IMAGE_INCLUDE})
 include_directories(${CMAKE_SOURCE_DIR}/Core/ComponentSystem)
 include_directories(${CMAKE_SOURCE_DIR}/Core/ComponentSystem/Viewport)
 include_directories(${CMAKE_SOURCE_DIR}/Core/ComponentSystem/Components)
+include_directories(${CMAKE_SOURCE_DIR}/Core/ComponentSystem/Animations)
 include_directories(${CMAKE_SOURCE_DIR}/Core/Managers)
 include_directories(${CMAKE_SOURCE_DIR}/Core/Shaders/Classes)
 include_directories(${CMAKE_SOURCE_DIR}/Core/GUI/Layout)
@@ -57,6 +58,9 @@ add_executable(HazelEngine main.cpp
         Core/ComponentSystem/Components/Renderer.cpp
         Core/ComponentSystem/Components/BoxCollider.cpp
         Core/ComponentSystem/Components/SpriteRenderer.cpp
+        Core/ComponentSystem/Animations/AnimationLoader.cpp
+        Core/ComponentSystem/Animations/Animator.cpp
+        Core/GUI/lib/yyjson.c
 )
 
 target_link_libraries(${PROJECT_NAME} SDL2main SDL2 SDL2_ttf SDL2_image)

@@ -23,3 +23,20 @@ void Scene::HandleEvents(const SDL_Event &event) {
         }
     }
 }
+
+Entity* Scene::GetEntity(const std::string &entityName) {
+    if (entities.find(entityName) != entities.end()){
+        return entities[entityName];
+    } else {
+        return nullptr;
+    }
+}
+
+void Scene::AddChild(Node* child){
+    Node::AddChild(child);
+
+    Entity* entityChild = dynamic_cast<Entity*>(child);
+    if (entityChild){
+        entities[entityChild->name] = entityChild;
+    }
+}

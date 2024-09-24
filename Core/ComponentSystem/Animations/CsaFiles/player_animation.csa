@@ -1,0 +1,21 @@
+{
+  "textureAtlas": {
+    "texture": "player_animation.png",
+    "texturePath": "/HazelEngine/Core/GUI/assets/animations/player_animation.png",
+    "regionWidth": 48,
+    "regionHeight": 48
+  },
+  "jsonFile": "/HazelEngine/Core/ComponentSystem/Animations/JsonFiles/player_animation.json",
+  "cycles": {
+    "run": {
+      "frames": [0,1,2,3,4,5,6,7],
+      "isLooping": true,
+      "frameDuration": 0.06
+    },
+    "idle": {
+      "frames": [10,11,12,13,14,15,16,17,18,19],
+      "isLooping": true,
+      "frameDuration": 0.05
+    }
+  }
+}

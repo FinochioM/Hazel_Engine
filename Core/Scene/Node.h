@@ -15,7 +15,7 @@ public:
 
     // Ciclo de vida
 
-    void AddChild(Node* child);
+    virtual void AddChild(Node* child);
     void RemoveChild(Node* child);
     Node* GetChild(const std::string& name);
 
