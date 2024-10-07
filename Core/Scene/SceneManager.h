@@ -11,17 +11,17 @@ public:
     SceneManager();
     ~SceneManager();
 
-    void AddScene(Scene* scene);
+    void AddScene(std::shared_ptr<Scene> scene);
     void RemoveScene(const std::string& sceneName);
 
     void SetCurrentScene(const std::string& sceneName);
-    Scene* GetCurrentScene() const;
+    std::shared_ptr<Scene> GetCurrentScene() const;
 
     void Update(float deltaTime);
     void Render();
 
 private:
-    std::map<std::string, Scene*> scenes;  // Almacena todas las escenas
-    Scene* currentScene;  // La escena actual activa
+    std::map<std::string, std::shared_ptr<Scene>> scenes;  // Almacena todas las escenas
+    std::shared_ptr<Scene> currentScene;  // La escena actual activa
 };
 #endif

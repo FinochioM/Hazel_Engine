@@ -3,9 +3,17 @@
 
 Scene::Scene(const std::string& name) : Node(name) {}
 
-void Scene::Load() { }
+void Scene::Init() {
+    std ::cout << "Scene " << name << " initialized" << std::endl;
+}
 
-void Scene::Unload() { }
+void Scene::Load() {
+    std::cout << "Scene " << name << " loaded" << std::endl;
+}
+
+void Scene::Unload() {
+    std::cout << "Scene " << name << " unloaded" << std::endl;
+}
 
 void Scene::Update(float deltaTime) {
     Node::Update(deltaTime);

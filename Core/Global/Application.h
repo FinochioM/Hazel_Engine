@@ -7,9 +7,9 @@
 #include <iostream>
 
 #include "TextRenderer.h"
-#include "FontManager.h"
 #include "Global.h"
 #include "WidgetManager.h"
+#include "WindowManager.h"
 #include "Button.h"
 #include "SceneManager.h"
 
@@ -25,16 +25,12 @@ public:
     void Shutdown();
 
 private:
-    SDL_Window* window = nullptr;
-    SDL_GLContext glContext;
-    FontManager fontManager;
-    TextRenderer* textRenderer;
-    SceneManager sceneManager;
-
-    bool InitSDL();
-    bool InitOpenGL();
-    bool InitTTF();
     void GameLoop();
+
+    std::unique_ptr<WindowManager> windowManager;
+    std::unique_ptr<SceneManager> sceneManager;
+    TextRenderer* textRenderer;
+    bool isRunning;
 };
 
 #endif

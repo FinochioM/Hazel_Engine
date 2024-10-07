@@ -30,15 +30,16 @@ void Animator::UpdateAnimation(float deltaTime){
 
     AnimationCycle cycle = animationLoader->GetAnimationCycle(currentCycle);
 
-    if (currentTime >= cycle.frameDuration){
+    if (cycle.frameDuration > 0.0f && currentTime >= cycle.frameDuration) {
         currentTime = 0.0f;
         currentFrame = (currentFrame + 1) % cycle.frames.size();
 
-        if (!isLooping && currentFrame == 0){
+        if (!isLooping && currentFrame == 0) {
             currentFrame = cycle.frames.size() - 1;
         }
 
         auto frame = cycle.frames[currentFrame];
+        // Aquí se llama a SetFrame() con los valores específicos del frame actual
         spriteRenderer->SetFrame(frame.x, frame.y, frame.width, frame.height);
     }
 }

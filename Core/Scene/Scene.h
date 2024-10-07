@@ -12,7 +12,7 @@ public:
     Scene(const std::string& name);
     ~Scene() = default;
 
-
+    void Init();
     void Load();
     void Unload();
 

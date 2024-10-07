@@ -6,8 +6,8 @@ Entity::Entity(const std::string& name) : Node(name) {}
 
 Entity::~Entity() { }
 
-void Entity::AddComponent(Component *component) {
-    components.emplace_back(component);
+void Entity::AddComponent(std::unique_ptr<Component> component) {
+    components.push_back(std::move(component));
 }
 
 void Entity::RemoveComponent(Component *component) {
@@ -16,12 +16,13 @@ void Entity::RemoveComponent(Component *component) {
                      components.end());
 }
 
-Component* Entity::GetComponent(const std::string& typeName){
-    for (const auto& component : components){
-        if (component->GetTypeName() == typeName){
+Component* Entity::GetComponentByName(const std::string& componentName) const {
+    for (const auto &component: components) {
+        if (component->GetTypeName() == componentName){
             return component.get();
         }
     }
+
     return nullptr;
 }
 

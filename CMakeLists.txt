@@ -42,8 +42,6 @@ link_directories(${SDL_IMAGE_LIB})
 
 add_executable(HazelEngine main.cpp
         Core/ComponentSystem/Entity.cpp
-        Core/Shaders/Classes/Shader.cpp
-        Core/Managers/FontManager.cpp
         Core/GUI/lib/TextRenderer.cpp
         Core/Global/Global.cpp
         Core/Global/Application.cpp
@@ -61,6 +59,8 @@ add_executable(HazelEngine main.cpp
         Core/ComponentSystem/Animations/AnimationLoader.cpp
         Core/ComponentSystem/Animations/Animator.cpp
         Core/GUI/lib/yyjson.c
+        Core/Managers/ResourceManager.cpp
+        Core/Managers/WindowManager.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} SDL2main SDL2 SDL2_ttf SDL2_image)

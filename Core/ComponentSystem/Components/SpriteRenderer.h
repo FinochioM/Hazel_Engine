@@ -4,6 +4,7 @@
 #include "Renderer.h"
 #include "Entity.h"
 #include "Transform.h"
+#include "Texture.h"
 
 #include <string>
 #include <SDL.h>
@@ -17,26 +18,25 @@ enum class TextureFilter{
 
 class SpriteRenderer : public Renderer{
 public:
-    SpriteRenderer(Entity* owner, const std::string& texturePath, TextureFilter = TextureFilter::Point);
+    SpriteRenderer(Entity* owner, std::shared_ptr<Texture> texture, TextureFilter filterType = TextureFilter::Point);
     ~SpriteRenderer();
 
     void Update(float deltaTime) override;
     void Render() override;
 
     void SetFrame(int x, int y, int width, int height);
-
     void SetOpacity(float opacity);
 
+    std::string GetTypeName() const override { return "SpriteRenderer"; }
+
 private:
-    GLuint textureID;
-    int textureWidth, textureHeight;
+    std::shared_ptr<Texture> texture;
     TextureFilter filterType;
+    Transform* transform;
 
     int frameX, frameY, frameWidth, frameHeight;
-
-    bool LoadTexture(const std::string& texturePath);
-    void ApplyFilter();
-
     float opacity;
+
+    void ApplyFilter();
 };
 #endif

@@ -6,6 +6,10 @@ Node::Node(const std::string& name)
     : name(name), pos(0.0f, 0.0f) {}
 
 
+void Node::Init(){
+    // Iniciailizar cualquier recurso para el nodo
+}
+
 void Node::Update(float deltaTime){
     for (Node* child : children){
         child->Update(deltaTime);
@@ -37,7 +41,7 @@ Node* Node::GetChild(const std::string& name){
 }
 
 void Node::SetPosition(const glm::vec3 &position) {
-    pos = position;
+    this->pos = position;
 }
 
 glm::vec2 Node::GetPosition() const{

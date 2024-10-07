@@ -63,20 +63,6 @@ build CMakeFiles/HazelEngine.dir/Core/ComponentSystem/Entity.cpp.obj: CXX_COMPIL
   OBJECT_DIR = CMakeFiles\HazelEngine.dir
   OBJECT_FILE_DIR = CMakeFiles\HazelEngine.dir\Core\ComponentSystem
 
-build CMakeFiles/HazelEngine.dir/Core/Shaders/Classes/Shader.cpp.obj: CXX_COMPILER__HazelEngine_unscanned_Debug D$:/HazelEngine/Core/Shaders/Classes/Shader.cpp || cmake_object_order_depends_target_HazelEngine
-  DEP_FILE = CMakeFiles\HazelEngine.dir\Core\Shaders\Classes\Shader.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -IC:/libs_programming/SDL2/include -IC:/libs_programming/Glew/include/GL -IC:/libs_programming -IC:/libs_programming/sdl_ttf/include -IC:/libs_programming/sdl_image/include -ID:/HazelEngine/Core/ComponentSystem -ID:/HazelEngine/Core/ComponentSystem/Viewport -ID:/HazelEngine/Core/ComponentSystem/Components -ID:/HazelEngine/Core/ComponentSystem/Animations -ID:/HazelEngine/Core/Managers -ID:/HazelEngine/Core/Shaders/Classes -ID:/HazelEngine/Core/GUI/Layout -ID:/HazelEngine/Core/GUI/Renderer -ID:/HazelEngine/Core/GUI/Widgets -ID:/HazelEngine/Core/GUI/Widgets/Handlers -ID:/HazelEngine/Core/GUI/lib -ID:/HazelEngine/Core -ID:/HazelEngine/Core/Global -ID:/HazelEngine/Core/Interfaces -ID:/HazelEngine/Core/Scene
-  OBJECT_DIR = CMakeFiles\HazelEngine.dir
-  OBJECT_FILE_DIR = CMakeFiles\HazelEngine.dir\Core\Shaders\Classes
-
-build CMakeFiles/HazelEngine.dir/Core/Managers/FontManager.cpp.obj: CXX_COMPILER__HazelEngine_unscanned_Debug D$:/HazelEngine/Core/Managers/FontManager.cpp || cmake_object_order_depends_target_HazelEngine
-  DEP_FILE = CMakeFiles\HazelEngine.dir\Core\Managers\FontManager.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -IC:/libs_programming/SDL2/include -IC:/libs_programming/Glew/include/GL -IC:/libs_programming -IC:/libs_programming/sdl_ttf/include -IC:/libs_programming/sdl_image/include -ID:/HazelEngine/Core/ComponentSystem -ID:/HazelEngine/Core/ComponentSystem/Viewport -ID:/HazelEngine/Core/ComponentSystem/Components -ID:/HazelEngine/Core/ComponentSystem/Animations -ID:/HazelEngine/Core/Managers -ID:/HazelEngine/Core/Shaders/Classes -ID:/HazelEngine/Core/GUI/Layout -ID:/HazelEngine/Core/GUI/Renderer -ID:/HazelEngine/Core/GUI/Widgets -ID:/HazelEngine/Core/GUI/Widgets/Handlers -ID:/HazelEngine/Core/GUI/lib -ID:/HazelEngine/Core -ID:/HazelEngine/Core/Global -ID:/HazelEngine/Core/Interfaces -ID:/HazelEngine/Core/Scene
-  OBJECT_DIR = CMakeFiles\HazelEngine.dir
-  OBJECT_FILE_DIR = CMakeFiles\HazelEngine.dir\Core\Managers
-
 build CMakeFiles/HazelEngine.dir/Core/GUI/lib/TextRenderer.cpp.obj: CXX_COMPILER__HazelEngine_unscanned_Debug D$:/HazelEngine/Core/GUI/lib/TextRenderer.cpp || cmake_object_order_depends_target_HazelEngine
   DEP_FILE = CMakeFiles\HazelEngine.dir\Core\GUI\lib\TextRenderer.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
@@ -196,6 +182,20 @@ build CMakeFiles/HazelEngine.dir/Core/GUI/lib/yyjson.c.obj: C_COMPILER__HazelEng
   OBJECT_DIR = CMakeFiles\HazelEngine.dir
   OBJECT_FILE_DIR = CMakeFiles\HazelEngine.dir\Core\GUI\lib
 
+build CMakeFiles/HazelEngine.dir/Core/Managers/ResourceManager.cpp.obj: CXX_COMPILER__HazelEngine_unscanned_Debug D$:/HazelEngine/Core/Managers/ResourceManager.cpp || cmake_object_order_depends_target_HazelEngine
+  DEP_FILE = CMakeFiles\HazelEngine.dir\Core\Managers\ResourceManager.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/libs_programming/SDL2/include -IC:/libs_programming/Glew/include/GL -IC:/libs_programming -IC:/libs_programming/sdl_ttf/include -IC:/libs_programming/sdl_image/include -ID:/HazelEngine/Core/ComponentSystem -ID:/HazelEngine/Core/ComponentSystem/Viewport -ID:/HazelEngine/Core/ComponentSystem/Components -ID:/HazelEngine/Core/ComponentSystem/Animations -ID:/HazelEngine/Core/Managers -ID:/HazelEngine/Core/Shaders/Classes -ID:/HazelEngine/Core/GUI/Layout -ID:/HazelEngine/Core/GUI/Renderer -ID:/HazelEngine/Core/GUI/Widgets -ID:/HazelEngine/Core/GUI/Widgets/Handlers -ID:/HazelEngine/Core/GUI/lib -ID:/HazelEngine/Core -ID:/HazelEngine/Core/Global -ID:/HazelEngine/Core/Interfaces -ID:/HazelEngine/Core/Scene
+  OBJECT_DIR = CMakeFiles\HazelEngine.dir
+  OBJECT_FILE_DIR = CMakeFiles\HazelEngine.dir\Core\Managers
+
+build CMakeFiles/HazelEngine.dir/Core/Managers/WindowManager.cpp.obj: CXX_COMPILER__HazelEngine_unscanned_Debug D$:/HazelEngine/Core/Managers/WindowManager.cpp || cmake_object_order_depends_target_HazelEngine
+  DEP_FILE = CMakeFiles\HazelEngine.dir\Core\Managers\WindowManager.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/libs_programming/SDL2/include -IC:/libs_programming/Glew/include/GL -IC:/libs_programming -IC:/libs_programming/sdl_ttf/include -IC:/libs_programming/sdl_image/include -ID:/HazelEngine/Core/ComponentSystem -ID:/HazelEngine/Core/ComponentSystem/Viewport -ID:/HazelEngine/Core/ComponentSystem/Components -ID:/HazelEngine/Core/ComponentSystem/Animations -ID:/HazelEngine/Core/Managers -ID:/HazelEngine/Core/Shaders/Classes -ID:/HazelEngine/Core/GUI/Layout -ID:/HazelEngine/Core/GUI/Renderer -ID:/HazelEngine/Core/GUI/Widgets -ID:/HazelEngine/Core/GUI/Widgets/Handlers -ID:/HazelEngine/Core/GUI/lib -ID:/HazelEngine/Core -ID:/HazelEngine/Core/Global -ID:/HazelEngine/Core/Interfaces -ID:/HazelEngine/Core/Scene
+  OBJECT_DIR = CMakeFiles\HazelEngine.dir
+  OBJECT_FILE_DIR = CMakeFiles\HazelEngine.dir\Core\Managers
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target HazelEngine
@@ -204,7 +204,7 @@ build CMakeFiles/HazelEngine.dir/Core/GUI/lib/yyjson.c.obj: C_COMPILER__HazelEng
 #############################################
 # Link the executable HazelEngine.exe
 
-build HazelEngine.exe: CXX_EXECUTABLE_LINKER__HazelEngine_Debug CMakeFiles/HazelEngine.dir/main.cpp.obj CMakeFiles/HazelEngine.dir/Core/ComponentSystem/Entity.cpp.obj CMakeFiles/HazelEngine.dir/Core/Shaders/Classes/Shader.cpp.obj CMakeFiles/HazelEngine.dir/Core/Managers/FontManager.cpp.obj CMakeFiles/HazelEngine.dir/Core/GUI/lib/TextRenderer.cpp.obj CMakeFiles/HazelEngine.dir/Core/Global/Global.cpp.obj CMakeFiles/HazelEngine.dir/Core/Global/Application.cpp.obj CMakeFiles/HazelEngine.dir/Core/GUI/Widgets/Handlers/WidgetManager.cpp.obj CMakeFiles/HazelEngine.dir/Core/GUI/Widgets/Widget.cpp.obj CMakeFiles/HazelEngine.dir/Core/GUI/Widgets/Button.cpp.obj CMakeFiles/HazelEngine.dir/Core/Scene/Node.cpp.obj CMakeFiles/HazelEngine.dir/Core/Scene/Scene.cpp.obj CMakeFiles/HazelEngine.dir/Core/Scene/SceneManager.cpp.obj CMakeFiles/HazelEngine.dir/Core/ComponentSystem/Component.cpp.obj CMakeFiles/HazelEngine.dir/Core/ComponentSystem/Components/Transform.cpp.obj CMakeFiles/HazelEngine.dir/Core/ComponentSystem/Components/Renderer.cpp.obj CMakeFiles/HazelEngine.dir/Core/ComponentSystem/Components/BoxCollider.cpp.obj CMakeFiles/HazelEngine.dir/Core/ComponentSystem/Components/SpriteRenderer.cpp.obj CMakeFiles/HazelEngine.dir/Core/ComponentSystem/Animations/AnimationLoader.cpp.obj CMakeFiles/HazelEngine.dir/Core/ComponentSystem/Animations/Animator.cpp.obj CMakeFiles/HazelEngine.dir/Core/GUI/lib/yyjson.c.obj
+build HazelEngine.exe: CXX_EXECUTABLE_LINKER__HazelEngine_Debug CMakeFiles/HazelEngine.dir/main.cpp.obj CMakeFiles/HazelEngine.dir/Core/ComponentSystem/Entity.cpp.obj CMakeFiles/HazelEngine.dir/Core/GUI/lib/TextRenderer.cpp.obj CMakeFiles/HazelEngine.dir/Core/Global/Global.cpp.obj CMakeFiles/HazelEngine.dir/Core/Global/Application.cpp.obj CMakeFiles/HazelEngine.dir/Core/GUI/Widgets/Handlers/WidgetManager.cpp.obj CMakeFiles/HazelEngine.dir/Core/GUI/Widgets/Widget.cpp.obj CMakeFiles/HazelEngine.dir/Core/GUI/Widgets/Button.cpp.obj CMakeFiles/HazelEngine.dir/Core/Scene/Node.cpp.obj CMakeFiles/HazelEngine.dir/Core/Scene/Scene.cpp.obj CMakeFiles/HazelEngine.dir/Core/Scene/SceneManager.cpp.obj CMakeFiles/HazelEngine.dir/Core/ComponentSystem/Component.cpp.obj CMakeFiles/HazelEngine.dir/Core/ComponentSystem/Components/Transform.cpp.obj CMakeFiles/HazelEngine.dir/Core/ComponentSystem/Components/Renderer.cpp.obj CMakeFiles/HazelEngine.dir/Core/ComponentSystem/Components/BoxCollider.cpp.obj CMakeFiles/HazelEngine.dir/Core/ComponentSystem/Components/SpriteRenderer.cpp.obj CMakeFiles/HazelEngine.dir/Core/ComponentSystem/Animations/AnimationLoader.cpp.obj CMakeFiles/HazelEngine.dir/Core/ComponentSystem/Animations/Animator.cpp.obj CMakeFiles/HazelEngine.dir/Core/GUI/lib/yyjson.c.obj CMakeFiles/HazelEngine.dir/Core/Managers/ResourceManager.cpp.obj CMakeFiles/HazelEngine.dir/Core/Managers/WindowManager.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lSDL2main  -lSDL2  -lSDL2_ttf  -lSDL2_image  -lglew32s  -lglew32  -lopengl32  -lglu32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   LINK_PATH = -LC:/libs_programming/SDL2/lib/x64   -LC:/libs_programming/Glew/lib/Release/x64   -LC:/libs_programming/sdl_ttf/lib/x64   -LC:/libs_programming/sdl_image/lib/x64

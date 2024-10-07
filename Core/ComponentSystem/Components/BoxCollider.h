@@ -20,7 +20,6 @@ public:
     glm::vec2 GetPosition() const;
     glm::vec2 GetSize() const;
 
-private:
     glm::vec2 size;
 };
 #endif

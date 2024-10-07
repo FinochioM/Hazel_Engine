@@ -3,9 +3,11 @@
 
 #include <vector>
 #include <memory>
+#include <iostream>
 #include "Entity.h"
 #include "Renderer.h"
 #include "BoxCollider.h"
+#include "Camera2D.h"
 
 class EntityManager {
 public:

@@ -6,11 +6,12 @@
 #include "SpriteRenderer.h"
 #include "BoxCollider.h"
 #include "Animator.h"
+#include "ResourceManager.h"
 
 float deltaTime = 0.0f;
 bool isItRunning = false;
 
-Application::Application() : textRenderer(nullptr), window(nullptr) {}
+Application::Application() : textRenderer(nullptr), windowManager(nullptr), sceneManager(nullptr), isRunning(false) {}
 
 Application::~Application() {
     Shutdown();
@@ -20,12 +21,20 @@ bool Application::Init()
 {
     bool isRunning = isItRunning;
 
-    if (!InitSDL() || !InitOpenGL() || !InitTTF()) {
+    windowManager = std::make_unique<WindowManager>();
+    if (!windowManager->Init("Hazel Engine", 1280, 720)) {
+        std::cerr << "Failed to initialize WindowManager." << std::endl;
         return false;
     }
 
-    if (!fontManager.LoadFont("../Core/GUI/assets/fonts/Inconsolata_L.ttf", 23)) {
-        std::cerr << "Error al cargar la fuente" << std::endl;
+    if (TTF_Init() == -1) {
+        std::cerr << "Error al inicializar SDL_ttf: " << TTF_GetError() << std::endl;
+        return false;
+    }
+
+    auto font = ResourceManager::GetInstance().Load<Font>("GenericName","../Core/GUI/assets/fonts/Roboto_R.ttf", 24);
+    if (!font){
+        std::cerr << "Failed to load font" << std::endl;
         return false;
     }
 
@@ -45,108 +54,38 @@ bool Application::Init()
         return !isItRunning;
     };
 
-    textRenderer = new TextRenderer(&fontManager);
-    AnimationLoader* loader = new AnimationLoader();
+    textRenderer = new TextRenderer(font);
+    sceneManager = std::make_unique<SceneManager>();
+
+    auto loader = std::make_shared<AnimationLoader>();
     loader->LoadAnimation("../Core/ComponentSystem/Animations/CsaFiles/player_animation.csa");
 
     Entity* entity = new Entity("Entity");
-    Transform* transform = new Transform(entity);
-    SpriteRenderer* renderer = new SpriteRenderer(entity, "../Core/GUI/assets/animations/player_animation.png", TextureFilter::Point);
-    BoxCollider* collider = new BoxCollider(entity, glm::vec2(100.0, 100.0));
-    Animator* animator = new Animator(entity, renderer, loader);
+    auto texture = ResourceManager::GetInstance().Load<Texture>("player_texture", "../Core/GUI/assets/animations/player_animation.png");
 
+    entity->AddComponent(std::make_unique<Transform>(entity));
+
+
+    auto spriteRenderer = std::make_unique<SpriteRenderer>(entity, texture, TextureFilter::Point);
+    entity->AddComponent(std::move(spriteRenderer));
+
+
+    auto spriteRendererFromEntity = entity->GetComponent<SpriteRenderer>();
+
+    entity->AddComponent(std::make_unique<Animator>(entity, spriteRendererFromEntity, loader.get()));
+    auto animator = entity->GetComponent<Animator>();
     animator->PlayAnimation("idle");
-    animator->AddTransition(idleToRun);
-    animator->AddTransition(runToIdle);
-    animator->SetManualControl(true);
 
-    transform->position = glm::vec3(200.0);
-    transform->scale = glm::vec3(2.0);
-
-    entity->AddComponent(animator);
-    entity->AddComponent(transform);
-    entity->AddComponent(renderer);
-    entity->AddComponent(collider);
-
-    Scene* testScene = new Scene("TestScene");
+    auto testScene = std::make_shared<Scene>("Test Scene");
 
     Button* buttonNode = new Button(glm::vec2(100.0, 100.0), glm::vec2(200.0,50.0), "Swap", textRenderer);
-
-    buttonNode->RegisterEvent(WidgetEventType::LeftClick, [&isRunning] (){
-        isRunning = false;
-    });
-
-    buttonNode->RegisterEvent(WidgetEventType::RightClick, [&isRunning] (){
-        isRunning = true;
-    });
-
 
     testScene->AddChild(entity);
     testScene->AddChild(buttonNode);
 
+    sceneManager->AddScene(testScene);
+    sceneManager->SetCurrentScene("Test Scene");
 
-    sceneManager.AddScene(testScene);
-    sceneManager.SetCurrentScene("TestScene");
-
-
-    return true;
-}
-
-bool Application::InitSDL() {
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        std::cerr << "Error al inicializar SDL: " << SDL_GetError() << std::endl;
-        return false;
-    }
-
-    window = SDL_CreateWindow("Hazel Engine",
-                              SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                              1280, 720, SDL_WINDOW_OPENGL);
-
-    if (!window) {
-        std::cerr << "Error al crear la ventana: " << SDL_GetError() << std::endl;
-        SDL_Quit();
-        return false;
-    }
-
-    glContext = SDL_GL_CreateContext(window);
-    if (!glContext) {
-        std::cerr << "Error al crear el contexto OpenGL: " << SDL_GetError() << std::endl;
-        SDL_DestroyWindow(window);
-        SDL_Quit();
-        return false;
-    }
-
-    return true;
-}
-
-bool Application::InitOpenGL() {
-    glewExperimental = GL_TRUE;
-    GLenum err = glewInit();
-    if (err != GLEW_OK) {
-        std::cerr << "Error al inicializar GLEW: " << glewGetErrorString(err) << std::endl;
-        return false;
-    }
-
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(0, 1280, 720, 0, -1, 1);
-
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-
-    if (SDL_GL_MakeCurrent(window, glContext) != 0) {
-        std::cerr << "Error al activar el contexto OpenGL: " << SDL_GetError() << std::endl;
-        return false;
-    }
-
-    return true;
-}
-
-bool Application::InitTTF() {
-    if (TTF_Init() == -1) {
-        std::cerr << "Error al inicializar SDL_ttf: " << TTF_GetError() << std::endl;
-        return false;
-    }
     return true;
 }
 
@@ -165,11 +104,11 @@ void Application::GameLoop() {
                 running = false;
             }
 
-            sceneManager.GetCurrentScene()->HandleEvents(event);
+            sceneManager->GetCurrentScene()->HandleEvents(event);
 
-            auto entity = sceneManager.GetCurrentScene()->GetEntity("Entity");
+            auto entity = sceneManager->GetCurrentScene()->GetEntity("Entity");
             if (entity) {
-                auto animator = static_cast<Animator *>(entity->GetComponent("Animator"));
+                auto animator = static_cast<Animator *>(entity->GetComponent<Animator>());
                 if (animator) {
                     if (event.type == SDL_KEYDOWN) {
                         if (event.key.keysym.sym == SDLK_n) {
@@ -186,13 +125,13 @@ void Application::GameLoop() {
             }
         }
 
-        sceneManager.Update(deltaTime);
+        sceneManager->Update(deltaTime);
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        sceneManager.Render();
+        sceneManager->Render();
 
-        SDL_GL_SwapWindow(window);
+        SDL_GL_SwapWindow(windowManager->GetWindow());
     }
 }
 
@@ -206,8 +145,9 @@ void Application::Shutdown() {
         textRenderer = nullptr;
     }
 
-    SDL_GL_DeleteContext(glContext);
-    SDL_DestroyWindow(window);
-    SDL_Quit();
+    if (windowManager) {
+        windowManager->ShutDown();
+    }
+
     TTF_Quit();
 }

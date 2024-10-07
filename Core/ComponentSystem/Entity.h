@@ -13,14 +13,22 @@ public:
     Entity(const std::string& name);
     virtual ~Entity();
 
-    void AddComponent(Component *component);
-
+    void AddComponent(std::unique_ptr<Component> component);
     void RemoveComponent(Component *component);
 
-    Component *GetComponent(const std::string &componentName);
+    Component* GetComponentByName(const std::string& componentName) const;
+
+    template <typename T>
+    T* GetComponent() const {
+        for (const auto& component : components) {
+            if (auto casted = dynamic_cast<T*>(component.get())) {
+                return casted;
+            }
+        }
+        return nullptr;
+    }
 
     void Update(float deltaTime) override;
-
     void Render() override;
 
 protected:

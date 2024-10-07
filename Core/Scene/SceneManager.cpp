@@ -1,15 +1,13 @@
 #include "SceneManager.h"
+#include <iostream>
 
 SceneManager::SceneManager() : currentScene(nullptr) {}
 
 SceneManager::~SceneManager() {
-    for (auto &scenePair: scenes) {
-        delete scenePair.second;
-    }
-    scenes.clear();
+    // Liberar todas las escenas
 }
 
-void SceneManager::AddScene(Scene* scene){
+void SceneManager::AddScene(std::shared_ptr<Scene> scene){
     scenes[scene->name] = scene;
 }
 
@@ -18,10 +16,21 @@ void SceneManager::RemoveScene(const std::string& sceneName){
 }
 
 void SceneManager::SetCurrentScene(const std::string& sceneName){
-    currentScene = scenes[sceneName];
+    if (currentScene){
+        currentScene->Unload();
+    }
+
+    auto it = scenes.find(sceneName);
+    if (it != scenes.end()) {
+        currentScene = it->second;
+        currentScene->Init();
+        currentScene->Load();
+    } else {
+        std::cerr << "Scene not found: " << sceneName << std::endl;
+    }
 }
 
-Scene* SceneManager::GetCurrentScene() const{
+std::shared_ptr<Scene> SceneManager::GetCurrentScene() const{
     return currentScene;
 }
 

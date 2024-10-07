@@ -10,6 +10,7 @@ public:
     Node(const std::string& name);
     virtual ~Node() = default;
 
+    virtual void Init();
     virtual void Update(float deltaTime);
     virtual void Render();
 

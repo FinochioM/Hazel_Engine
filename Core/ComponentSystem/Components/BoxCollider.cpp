@@ -8,7 +8,7 @@ BoxCollider::BoxCollider(Entity *owner, const glm::vec2 &size)
 void BoxCollider::Update(float deltaTime) {}
 
 void BoxCollider::Render(){
-    Transform* transform = static_cast<Transform*>(owner->GetComponent("Transform"));
+    Transform* transform = owner->GetComponent<Transform>();
 
     if (!transform){
         std::cerr << "No se ha encontrado el componente Transform en el objeto " << std::endl;
@@ -27,7 +27,7 @@ void BoxCollider::Render(){
 }
 
 glm::vec2 BoxCollider::GetPosition() const {
-    Transform* transform = static_cast<Transform*>(owner->GetComponent("Transform"));
+    Transform* transform = owner->GetComponent<Transform>();
     if (transform){
         return glm::vec2(transform->position);
     }
